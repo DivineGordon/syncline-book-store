@@ -26,3 +26,8 @@ Architecture:
   + Express
   + Database: Mongo db
   
+ Admin App:
+ + React
+ + React router
+ + Redux
+  
