@@ -5,6 +5,8 @@
 npm run server_start
 ```
 
+## View page at http:localhost:8080/static/index.html
+
 Architecture:
  
  
