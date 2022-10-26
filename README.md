@@ -1,5 +1,5 @@
 # syncline-book-store
-## To  start run
+## To  start the server (book store app) run (from the root directory):
 
 ```bash
 npm run server_start
