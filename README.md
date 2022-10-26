@@ -1,4 +1,9 @@
 # syncline-book-store
+## To  start run
+
+```bash
+npm run server_start
+```
 
 Architecture:
  
