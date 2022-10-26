@@ -7,6 +7,10 @@ npm run server_start
 
 ## View page at http:localhost:8080/static/index.html
 
+## To create admin user
+```bash
+npm run create_admin
+```
 Architecture:
  
  
@@ -30,4 +34,5 @@ Architecture:
  + React
  + React router
  + Redux
+  
   
