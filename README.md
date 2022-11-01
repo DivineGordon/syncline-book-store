@@ -35,4 +35,4 @@ Architecture:
  + React router
  + Redux
   
-  
+  ![plot](./resources/videos/login.mp4)
