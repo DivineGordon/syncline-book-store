@@ -36,3 +36,5 @@ Architecture:
  + Redux
   
   [![Watch the video]](./resources/videos/screen_recorder_login.mp4)
+
+[![asciicast](https://asciinema.org/a/113463.png)](https://asciinema.org/a/113463)
