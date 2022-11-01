@@ -42,7 +42,10 @@ const Role=db.role
     }
     const createUser=async(username,email,password)=>{
   const doc=  await  User.findOne({email}).exec()
-   if(doc)return console.log('Failed! email already exists');     
+   if(doc){
+    console.log('Failed! email already exists'); 
+    process.exit()
+    }    
       
       password= bcrypt.hashSync(password, 8)
          const role=await Role.findOne(
@@ -58,7 +61,9 @@ const Role=db.role
         const user=await User.create(user_data)
         user.roles.push(role)
         const savedUser=await user.save()
-        console.log('Admin created id '+savedUser)
+        console.log('Admin created id '+savedUser.id)
+        console.log('Email: '+savedUser.email)
+        console.log('Username: '+savedUser.username)
         process.exit()
      }
      
