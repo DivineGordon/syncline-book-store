@@ -118,7 +118,7 @@ function CartItem(props) {
       </div>
       <div className='w3-container w3-twothird w3-right-align'>
 
-      <p>{item.book.title}{" ("+price+")"}</p>
+     {item.book && <p>{item.book.title}{" ("+price+")"}</p>}
        <p>Qty: {p_qty}</p>
         <p>{subTotal}</p>
   </div>
