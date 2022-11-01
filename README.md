@@ -35,4 +35,4 @@ Architecture:
  + React router
  + Redux
   
-  ![plot](./resources/videos/screen_recorder_login.mp4)
+  ![Watch the video](./resources/videos/screen_recorder_login.mp4)
