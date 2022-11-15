@@ -28,11 +28,12 @@ export const SearchTerm = (props) => {
 
   return (
    // <div id="search-container">
-   <div className="w3-container w3-center">
-      <div className="w3-container w3-col m6">
-      <form name="searchForm" onSubmit={onSubmit} className="w3-container w3-row-padding">
+   <div className="w3-container w3-center">  
+      <form name="searchForm" onSubmit={onSubmit} 
+      className="w3-col m10 w3-container w3-row-padding">
         <div className="w3-container w3-twothird w3-margin-bottom" style={{position:"relative"}}>
       <input
+      className={{width:'100%'}}
       name='search' 
         id="search"
         type="text"
@@ -47,13 +48,13 @@ export const SearchTerm = (props) => {
           type="button"
           id="search-clear-button"
         >
-          <img src={clearIconUrl} alt="" />
+        <img src={clearIconUrl} alt="" />
         </button>
       )}</div>
       <div className='w3-third w3-margin-bottom'><button type="submit"   
       className='w3-btn w3-round currency-button selected' >Search
       </button>
      </div> </form>
-    </div></div>
+    </div>
   );
 };

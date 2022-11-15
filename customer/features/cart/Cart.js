@@ -9,7 +9,9 @@ import {useSelector,useDispatch} from 'react-redux';
 import {changeItemQuantity,removeItem, saveOrder} from './cartSlice.js';
 import { MessageBox2, SpinnerLoader } from '../../../General.js';
 import { useNavigate } from 'react-router-dom';
-import { systemMessage } from '../../app/appSlice.js';
+import { systemMessage } 
+from '../../app/appSlice';
+import { NonIdealState } from '@blueprintjs/core';
 
 export const Cart = (props) => {
   const { summary} = props;
@@ -31,6 +33,7 @@ if(apiLoading.state==='pending')return <SpinnerLoader  state={apiLoading.state} 
  
   const cartKeys=Object.keys(cart);
   //const cartElements = new Array(cartKeys.length);
+
   const total =cartKeys.length && calculateTotal(cart, currencyFilter);
 const sendOrder=(e)=>{
 e.stopPropagation();
@@ -44,7 +47,8 @@ dispatch(saveOrder(cartData))
 
 }
 
- const msgButton=<button  onClick={sendOrder}  className='w3-btn w3-blue'>Pay</button>
+ const msgButton=<button  onClick={sendOrder}  
+ className='w3-btn w3-blue'>Pay</button>
 
 
   if(summary){
@@ -70,6 +74,13 @@ width:"100%"}}>
     {getCurrencySymbol(currencyFilter)}{total}
   </span></h3></div>
 </div></div>
+  }
+
+  if(!cartKeys.length){
+    return <NonIdealState  className='w3-center'
+    icon='shopping-cart'
+    title={<h3>cart is empty</h3>}
+    />
   }
 const onRemove=(e)=>{dispatch(removeItem(e.target.name))};
   const onChangeHandler = (_id, input) => {
@@ -97,6 +108,7 @@ e.stopPropagation();
 setMsgBox(s=>({...s,component:null,display:'show',message:`Total Amount ${
   getCurrencySymbol(currencyFilter)+' '+total}`,button:msgButton}))
 }
+
   return (
    
 <div className="w3-container">
@@ -106,7 +118,8 @@ message={msgbox.message}
 buttons={msgbox.button}
 change={setMsgBox}
 />
-<ul className="w3-row">{cartElements.length?cartElements:<h2>No items in cart</h2>}</ul>
+<ul className="w3-row">{
+cartElements.length?cartElements:<h2>No items in cart</h2>}</ul>
 {cartElements.length!==0 && <div className='w3-bar'>
   <button onClick={payForCart} className='w3-bar-item w3-btn currency-button selected w3-right'><b>
     Pay</b></button>

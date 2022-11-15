@@ -22,6 +22,7 @@ s.apiLoading='ff'
 }).addCase(getOrdersThunk.rejected,(s,a)=>{
     s.apiLoading='rejected'
     s.fetchCommand='idle'
+    
     })
    
 

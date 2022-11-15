@@ -50,7 +50,7 @@ reducers:{
 },
 extraReducers:(b)=>{
  b.addCase(searchDBproducts.pending,(s,a)=>{
-        s.searchTerm=a.payload
+        s.searchTerm=a.meta.arg
 })
 }
 })
@@ -58,11 +58,12 @@ extraReducers:(b)=>{
 export const searchTermReducer=slice.reducer
 export const {setSearchTerm,clearSearchTerm}=slice.actions
 export const searchDBproducts=createAsyncThunk('search/products/api/fetch',async(title)=>{
-//TODO: search db products
+// search db products
     const body=JSON.stringify({title})
     const headers={"Content-Type":'application/json'}
     try{
-   const res=await fetch('/api/books/get',{headers, method:"POST",body})
+   const res=await fetch('/api/books/get',
+   {headers, method:"POST",body})
    const data=await res.json()
    return data.books.map(v=>(v.unit_price=Number(v.unit_price),v))
     }catch(e){

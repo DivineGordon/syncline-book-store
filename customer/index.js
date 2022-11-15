@@ -2,13 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import { App } from './app/App.js';
+import { App } from './app/App';
 // Import the store here.
-import store from './app/store.js';
+import store from './app/store';
 
-
+ReactDOM.render(
+  <Provider store={store}>
+      <App  />
+      </Provider>
+      ,
+      document.getElementById('root')
+    )
 // Pass state and dispatch props to the <App /> component.
-const render = () => {
+/*const render = () => {
   ReactDOM.render(
 <Provider store={store}>
     <App  />
@@ -16,8 +22,8 @@ const render = () => {
     ,
     document.getElementById('root')
   )
-};
-render();
+};*/
+//render();
 
 // Subscribe render to the store.
-store.subscribe(render);
+//store.subscribe(render);

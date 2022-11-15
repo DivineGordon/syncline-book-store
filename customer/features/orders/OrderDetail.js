@@ -5,7 +5,7 @@ import {
   getCurrencySymbol,
 } from '../../utilities/utilities.js';
 import {useSelector,useDispatch} from 'react-redux';
-import { BackButton } from '../../app/App.js';
+import { BackButton } from '../../app/App';
 //import {changeItemQuantity,removeItem} from './cartSlice.js';
 import { MessageBox2 } from '../../../General.js';
 import { useParams } from 'react-router-dom';
