@@ -3,6 +3,7 @@ const cors = require("cors");
 const path=require('path')
 const morgan=require('morgan')
 const db = require("./app/models");
+const Order = require("./app/models/orders.model");
 const app = express();
 
 var corsOptions = {
@@ -27,7 +28,8 @@ require('./app/routes/user.routes')(app);
 require('./app/routes/picture.routes')(app);
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message:
+     "Welcome to bookshop application." });
 });
 
 
@@ -56,6 +58,7 @@ db.mongoose
   });
 
   async function initialDB() {
+ 
     //adding roles on startup
     Role.estimatedDocumentCount((err, count) => {
       if (!err && count === 0) {

@@ -47,7 +47,7 @@ exports.createBook=async (req,res,next)=>{
             book.picture=picDoc;
             //book.img=picDoc.id+'.'+
      const BookDoc= await  Book.create(book)
-     res.status(201).json({BookDoc})
+    return res.status(201).json({BookDoc})
     }catch(e){
       return  next(e)
     }
@@ -82,13 +82,13 @@ exports.updateBookFile=async (req,res,next)=>{
     }
      BookDoc= await  Book.updateOne( {_id:id}, book)
      if(BookDoc.acknowledged){
-     res.status(201).json({BookDoc})
+    return res.status(201).json({BookDoc})
     }
     else {
-        res.status(422).json({message:'update failure'})
+    return    res.status(422).json({message:'update failure'})
     }
     }catch(e){
-        next(e)
+      return  next(e)
     }
 }
 exports.updateBookText=async (req,res,next)=>{
@@ -101,10 +101,10 @@ exports.updateBookText=async (req,res,next)=>{
     
       BookDoc= await  Book.updateOne( {_id:id}, book)
      if(BookDoc.acknowledged){
-     res.status(201).json({BookDoc})
+    return  res.status(201).json({BookDoc})
     }
     else {
-        res.status(422).json({message:'update failure'})
+      return  res.status(422).json({message:'update failure'})
     }
     }catch(e){
         next(e)
@@ -116,15 +116,17 @@ exports.deleteBook=async (req,res,next)=>{
     try{
  const doc=await Order.findOne({bookIds:_id}).exec()
  if(doc){
- res.status(422).json({message:'failure order exists',_id})
+   
+ return res.status(422).json({message:'delete failure order exists',_id})
 }
+
  try{
     const resObj= await  Book.deleteOne ({_id})
     if(resObj.deletedCount!==undefined && resObj.deletedCount>=1){
-    res.status(200).json({message:'success',_id,DeleteResult:resObj})
+   return  res.status(200).json({message:'delete success',_id,DeleteResult:resObj})
    }
 }catch(e){
-    res.status(400).json({message:'failure',_id})
+   return res.status(400).json({message:'failure',_id})
    // next(e)
 }
     }catch(e){
