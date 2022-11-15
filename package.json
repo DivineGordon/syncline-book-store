@@ -6,6 +6,8 @@
   "scripts": {
     "server_start":"node server/server.js",
     "create_admin":"node server/AdminCreator.js",
+    "build_syncline": "webpack --env prod=syncline_store_ts",
+    "build_syncline_admin": "webpack --env prod=syncline_store_admin_ts"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
