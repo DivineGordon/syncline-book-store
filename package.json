@@ -1,0 +1,66 @@
+{
+  "name": "syncline",
+  "version": "1.0.0",
+  "description": "Node.js + MongoDB: JWT Authentication & Authorization",
+  "main": "index.js",
+  "scripts": {
+    "server_start":"node server/server.js",
+    "create_admin":"node server/AdminCreator.js",
+    "build_syncline": "webpack --env prod=syncline_store_ts",
+    "build_syncline_admin": "webpack --env prod=syncline_store_admin_ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.5",
+    "multer": "^1.4.5-lts.1",
+    "prompt-sync": "^4.2.0",
+     "@blueprintjs/core": "^4.12.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/joy": "^5.0.0-alpha.53",
+    "@mui/material": "^5.10.13",
+    "@reduxjs/toolkit": "^1.7.1",
+    "@types/node": "^17.0.25",
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.2",
+   
+   
+  
+   
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.2",
+    
+    
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.16.10",
+    "@babel/preset-react": "^7.16.7",
+    "chai": "^4.3.6",
+    "jest": "^27.5.1",
+    "mocha": "^9.2.2",
+    
+    "msw": "^0.28.2",
+    "puppeteer": "^13.4.1",
+    "svg-url-loader": "^7.1.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.2",
+    "webpack": ">=2",
+    "webpack-cli": "^4.9.2"
+    
+  }
+}

@@ -5,8 +5,7 @@ module.exports={
     entry:path.resolve(__dirname, String.raw`./admin/index.js`),
     output:{
         filename:'index.compiled_admin_ts.js',
-    // path:
-   //  String.raw`C:\Users\user\Documents\gordon_work\syncline\server\static\js`
+  
       path:path.resolve(
         __dirname,String.raw`.\server\static\js`)
     },
@@ -16,9 +15,9 @@ module.exports={
             test: /\.m?js$/,
             exclude: /node_modules/,
             use: {
-              loader: "C:\\Users\\user\\Documents\\gordon_work\\local\\node_modules\\babel-loader",
+              loader: path.resolve(__dirname,String.raw`.\node_modules\babel-loader`),
               options: {
-                presets: [ "C:\\Users\\user\\Documents\\gordon_work\\local\\node_modules\\@babel\\preset-react"
+                presets: [  path.resolve(__dirname,String.raw`.\node_modules\@babel\preset-react`)
                 ]
               }
             }

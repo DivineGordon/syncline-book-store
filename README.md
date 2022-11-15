@@ -1,6 +1,16 @@
 # syncline-book-store
-## To  start the server (book store app) run (from the root directory):
 
+## To  build frontend customer (book store app) run (from the root directory):
+```bash
+npm run build_syncline
+```
+
+## To  build frontend admin (book store app) run (from the root directory):
+```bash
+npm run build_syncline_admin
+```
+
+## To  start the server (book store app) run (from the root directory):
 ```bash
 npm run server_start
 ```
