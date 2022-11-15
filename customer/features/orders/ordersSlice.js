@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {saveOrder} from'../cart/cartSlice'
-import { authHeader } from "../../utilities/auth";
 import { changeUser } from "../user/userSlice";
 import {getOrdersMongo} from './mongodb'
 const slice=createSlice({

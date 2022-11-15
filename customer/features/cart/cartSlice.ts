@@ -20,8 +20,22 @@ export const addItem = (itemToAdd) => {
     }
   }
   */
-  const initialCart = {cart:{},itemsCount:0,
-  apiLoading:{state:'idle',id:''}};
+ type ProductType=any
+ interface Cart {
+ [productId: string]:{ title: String,
+  description?:string,
+  img?:string,
+    picture?:string,
+    quantity:number,
+    unit_price:number,
+  amount:number,
+  p_qty?:number,
+}
+ }
+ type APIState='idle'|'rejected'|'pending'|'ff'|'fulfilled'
+  const initialCart = {cart:{} as Cart,
+  itemsCount:0 as number,
+  apiLoading:{state:'idle' as APIState,id:'' as string}};
   const slice=createSlice({
     name:'cart',
     initialState:initialCart,
@@ -52,7 +66,7 @@ export const addItem = (itemToAdd) => {
 		const diff=newQuantity-itemToUpdate.p_qty;
         const updatedItem={...itemToUpdate,
         p_qty:newQuantity,
-        amount: (itemToUpdate.price * newQuantity)
+        amount: (itemToUpdate.unit_price * newQuantity)
         }
    
         
@@ -65,7 +79,7 @@ export const addItem = (itemToAdd) => {
         };
       },
       removeItem(cart,action){
-        const name=action.payload;
+        const name=action.payload as string;
         const old= cart.cart[name];
        const  newCart={...cart,
          cart:{...cart.cart} , 

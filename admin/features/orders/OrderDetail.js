@@ -5,9 +5,9 @@ import {
   getCurrencySymbol,
 } from '../../utilities/utilities.js';
 import {useSelector,useDispatch} from 'react-redux';
-//import { BackButton } from '../../app/App.js';
+import { BackButton } from '../../app/App';
 //import {changeItemQuantity,removeItem} from './cartSlice.js';
-import { MessageBox2 } from '../../../General.js';
+//import { MessageBox2 } from '../../General.js';
 import { useParams } from 'react-router-dom';
 import {getRDXOrders } from './ordersSlice'
 export const OrderDetail = (props) => {
@@ -39,7 +39,7 @@ export const OrderDetail = (props) => {
   return (
     
  <>
-    {/*<BackButton alone={true} page={-1} />*/}
+  <BackButton alone={true} page={-1} />
 <div className="w3-container">
 <div className='w3-container w3-padding'>
   <span className='w3-left'>Order ID: {order._id}</span>

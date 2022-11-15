@@ -4,9 +4,11 @@ module.exports={
     mode:"development",
     entry:path.resolve(__dirname, String.raw`./admin/index.js`),
     output:{
-        filename:'index.compiled_admin.js',
-     
-      path:path.resolve(__dirname,String.raw`.\server\static\js`)
+        filename:'index.compiled_admin_ts.js',
+    // path:
+   //  String.raw`C:\Users\user\Documents\gordon_work\syncline\server\static\js`
+      path:path.resolve(
+        __dirname,String.raw`.\server\static\js`)
     },
     module: {
         rules: [
@@ -20,7 +22,13 @@ module.exports={
                 ]
               }
             }
+          }, {
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
           }
         ]
+      },resolve:{
+        extensions:['.tsx','.ts','.js']
       }
 }

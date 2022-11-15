@@ -1,27 +1,45 @@
 import React,{useState,useEffect} from 'react';
-import { Inventory } from '../features/inventory/Inventory.js';
-import { CurrencyFilter } from '../features/currencyFilter/CurrencyFilter.js';
-import { SearchTerm } from '../features/searchTerm/SearchTerm2';
-import {Cart} from '../features/cart/Cart.js';
 import {useDispatch, useSelector} from "react-redux";
-import { clearSearchTerm } from '../features/searchTerm/searchTermSlice.js';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import { BrowserRouter as Router,Routes,Route, Navigate, useNavigate } from 'react-router-dom';
 import {OrdersList } from '../features/orders/Orders'
 import {EditView} from '../features/productView/SingleProduct'
 import { OrderDetail } from '../features/orders/OrderDetail';
-import { Nav } from '../../Navigation.js';
+import { Nav } from '../Navigation.js';
 import { changeUser } from '../features/user/userSlice.js';
-const BackButton=(props)=>{
-  const {cartButton,onClick,nO}=props;
-if(cartButton){
-  return  (<button style={{position:"sticky",top:"10%",right:"5%",float:"right"}} onClick={onClick}  
-  className='w3-btn w3-xlarge w3-round-xxlarge w3-border'>
-    <i className="fa fa-cart-plus" aria-hidden="true"></i><sup className="w3-border w3-red w3-round-xlarge">{nO}</sup></button>)
-}
-return <button style={{float:"right"}} onClick={props.onClick}  
-className='w3-btn currency-button selected'>BACK</button>
-};
+import {Catalogue} from '../features/catalogue/Catalogue'
 import { getLocalUser } from '../utilities/auth.js';
+export const BackButton = (props) => {
+  const navigate =useNavigate()
+  const onClick1 = () => { navigate(page) }
+  let { cartButton,onClick=onClick1, nO, page, alone } = props;
+  
+  let button;
+  if (cartButton) {
+    button = (<button style={
+      { position: "sticky", 
+      //top: "10%", 
+      //float: "right",
+     // right: "5%" 
+    }
+    } onClick={onClick}
+  className='w3-btn w3-xlarge w3-round-xxlarge w3-border w3-margin-right w3-cell'>
+      <i className="fa fa-cart-plus" aria-hidden="true">
+      </i><sup className="w3-border w3-red w3-round-xlarge">{nO}</sup></button>)
+  }
+  else button = <button 
+ 
+  onClick={onClick}
+    className='w3-btn currency-button selected w3-margin-right'>BACK</button>
+
+
+  if (alone) return <div className='w3-container'>
+    <div id="currency-filters-container">
+      {button}
+    </div></div>;
+  return button
+};
+
+
 export const App = (props) => {
 //const [checkout,setCheckout]=useState(false)
 let inventory=useSelector(state=>state.inventory.initialInventory);
@@ -41,42 +59,20 @@ useEffect(()=>{
   const onLogout=()=>{
     window.localStorage.removeItem('user')
   }
-  const menu_items=[['/static/admin/index.html','Home'],
-  ["/static/admin/books","Books"],
-["/static/admin/orders","Orders"],
-['/static/admin/books/edit/new','Add Book'],
-['/static/login/index.html','Login']
-];
+  
   return (
   <Router>
     <Nav menu={menu_items}
     onLogout={onLogout } logout_path="/static/login/index.html" 
     user={userNav} />
   <Routes>
-  <Route path='/static/admin/index.html' element={<Inventory  
-     dispatch={dispatch}
-     inventory={inventory}
-     searchTerm={searchTerm}
-  />} />
+  <Route path='/static/admin/index.html' element={
+ <Catalogue  />} />
   <Route  path='/static/admin/books'>
   
-  <Route index element={
-  <div className='w3-container'>
-  <div className='w3-container'>
-  <CurrencyFilter
-    dispatch={dispatch}
-  > { searchTerm &&
-    <BackButton onClick={()=>{dispatch(clearSearchTerm())}} />
-   
-    }
-    
-    </CurrencyFilter></div>
-    <SearchTerm  dispatch={dispatch} />
-  <Inventory  
-     dispatch={dispatch}
-     inventory={inventory}
-     searchTerm={searchTerm}
-  /></div>} />
+  <Route index element={<Catalogue />
+  
+  } />
   <Route path='edit/:bookId' element={<EditView   />}  />
   </Route>
  
@@ -88,46 +84,10 @@ useEffect(()=>{
   </Routes>
 </Router>);
 
-
-if(checkout){
-  return (
-  <div className="w3-main" style={{marginLeft:250}}>
-    <CurrencyFilter
-    dispatch={dispatch}
-  ><BackButton onClick={()=>{setCheckout(false)}} /></CurrencyFilter>
-  
-    <Cart 
-    summary={false}
-    />
-    </div>
-  )
-}
-
-if (searchTerm)inventory=searchResults;
-  return (
-    <div className='w3-container'>
-      <div className='w3-container'>
-      <CurrencyFilter
-        dispatch={dispatch}
-      > { searchTerm ?
-        <BackButton onClick={()=>{dispatch(clearSearchTerm())}} />:
-        <BackButton nO={nO} onClick={()=>{setCheckout(true)}} cartButton={true}/>
-        }
-          
-        </CurrencyFilter></div>
-      
-     
-      <SearchTerm  dispatch={dispatch} />
-      <Inventory
-        dispatch={dispatch}
-        inventory={inventory}
-        searchTerm={searchTerm}
-      />
-      <Cart 
-      summary={true}
-      onCheckout={onCheckout}
-      />
-
-    </div>
-  );
 };
+const menu_items=[['/static/admin/index.html','Home'],
+  ["/static/admin/books","Books"],
+["/static/admin/orders","Orders"],
+['/static/admin/books/edit/new','Add Book'],
+['/static/login/index.html','Login']
+];

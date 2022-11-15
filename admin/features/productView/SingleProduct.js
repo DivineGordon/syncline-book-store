@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { authHeader } from '../../../user/utilities/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { SpinnerLoader } from '../../../General'
-import { changeApiState, saveBookThunk } from './singleProductSlice';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { SpinnerLoader } from '../../General'
+import { changeApiState, saveBookThunk } from './singleProductSlice';
+import { BackButton } from '../../app/App';
 const inputtest = /input|textarea/i;
 export const EditView = () => {
     const { bookId } = useParams();
@@ -90,7 +90,9 @@ const onChange = (e) => {
         setImage(s => ({ ...s, element: img, filename: file.name }))
     }
     if (loader) return <SpinnerLoader state={'pending'} display='show' />;
-    return <form className='w3-col m7' onSubmit={onFormSubmit}
+    return <>
+    <BackButton alone={true} page={-1} />
+    <form className='w3-col m7' onSubmit={onFormSubmit}
         encType='multipart/form-data'  >
       {bookId!=='new' ? 
       <input type='hidden' name='id' value={bookId} />:null}
@@ -147,6 +149,7 @@ const onChange = (e) => {
         <div className='w3-center'>
             <button type='submit' className='w3-btn w3-blue'>Submit</button></div>
     </form>
+    </>
 
 
 }

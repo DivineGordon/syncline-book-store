@@ -16,7 +16,8 @@ export const SearchTerm = (props) => {
   };
   const onSubmit=(e)=>{
     e.preventDefault();
-    const userInput= document.forms.searchForm.search.value;
+    const userInput= document.forms.searchForm
+    .searchInput.value;
    
     dispatch(searchDBproducts(userInput));
   }
@@ -33,9 +34,9 @@ export const SearchTerm = (props) => {
       <form name="searchForm" onSubmit={onSubmit} className="w3-container w3-row-padding">
         <div className="w3-container w3-twothird w3-margin-bottom" style={{position:"relative"}}>
       <input
-      name='search' 
-        id="search"
-        type="text"
+      name='searchInput' 
+       id='search'
+       type="text"
         value={searchTerm}
         required={true}
         onChange={onSearchTermChangeHandler}

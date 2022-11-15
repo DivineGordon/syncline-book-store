@@ -7,7 +7,7 @@ import {
 import { addItem } from '../cart/cartSlice.js';
 import { loadData } from './inventorySlice';
 import {useDispatch, useSelector} from 'react-redux';
-import { MessageBox2 } from '../../../General.js';
+import { MessageBox2 } from '../../General.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { deleteBookThunk } from './inventorySlice';
 const emptyArray=[];
@@ -79,7 +79,7 @@ setMsgBox(s=>({...s,display:'show'}))
   //const addedToCart=useSelector(s=>(!!s.cart.cart[na]))
   const onEditClick=(e)=>{
     e.stopPropagation();
-    navigate(`./edit/${inventoryItem._id}`)
+    navigate(`/static/admin/books/edit/${inventoryItem._id}`)
   }
   return (
     <li className="item">
