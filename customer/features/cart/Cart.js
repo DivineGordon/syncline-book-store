@@ -6,8 +6,9 @@ import {
 } from '../../utilities/utilities.js';
 import {useSelector,useDispatch} from 'react-redux';
 
-import {changeItemQuantity,removeItem, saveOrder} from './cartSlice.js';
-import { MessageBox2, SpinnerLoader } from '../../../General.js';
+import {changeItemQuantity,removeItem, 
+  saveOrder} from './cartSlice';
+import { MessageBox2, SpinnerLoader } from '../../General.js';
 import { useNavigate } from 'react-router-dom';
 import { systemMessage } 
 from '../../app/appSlice';
@@ -79,7 +80,7 @@ width:"100%"}}>
   if(!cartKeys.length){
     return <NonIdealState  className='w3-center'
     icon='shopping-cart'
-    title={<h3>cart is empty</h3>}
+    title={<span>cart is empty</span>}
     />
   }
 const onRemove=(e)=>{dispatch(removeItem(e.target.name))};

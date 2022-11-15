@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { OrdersList } from '../features/orders/Orders';
 import { OrderDetail } from '../features/orders/OrderDetail';
-import { Nav } from '../../Navigation.js';
+import { Nav } from '../Navigation.js';
 import { getLocalUser } from '../utilities/auth.js';
 import { changeUser } from '../features/user/userSlice'
 import { CheckOut } 

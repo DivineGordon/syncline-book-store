@@ -13,20 +13,34 @@ const slice=createSlice({
         }
     },
     extraReducers:(b)=>{
-        b.addCase(saveOrder.rejected,s=>{
+        b.addCase(saveOrder.rejected,(s,a)=>{
             s.message='Purchase error'
+            if(a.payload=='no user'){
+               s.message='you need to login to make purchases' 
+            }
+            if(a.error && a.error.message){
+                const check=(a.error.message.indexOf('403')===-1) && (
+                a.error.message.indexOf('401')===-1)
+               
+               if(!check){
+                s.message='You need to login again'
+                
+            }
+        }
             s.count=s.count+1
         }).addCase(saveOrder.fulfilled,s=>{
             s.message='Order success'
             s.count=s.count+1
         }).addCase(getOrdersThunk.rejected,(s,a)=>{
-           const check=(a.error.message.indexOf('403')===-1) && (
-            a.error.message.indexOf('401')===-1)
+           if(a.error){
+            const check=(a.error.message!.indexOf('403')===-1) && (
+            a.error.message!.indexOf('401')===-1)
            
            if(!check){
             s.message='You need to login to see your orders'
             s.count=s.count+1
         }
+    }
         })
     }
 })

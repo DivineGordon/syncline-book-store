@@ -5,7 +5,7 @@ import {
   calculatePrice,
   getCurrencySymbol,
 } from '../../utilities/utilities.js';
-import { addItem } from '../cart/cartSlice.js';
+import { addItem } from '../cart/cartSlice';
 import { loadData } from './inventorySlice';
 import {useDispatch, useSelector} from 'react-redux';
 import { NonIdealState } from '@blueprintjs/core';
